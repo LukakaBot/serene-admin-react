@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
+import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vite.dev/config/
 export default defineConfig(() => {
@@ -20,6 +21,10 @@ export default defineConfig(() => {
           /\.[tj]sx?$/,
           /\.md$/
         ]
+      }),
+      viteMockServe({
+        mockPath: 'mock',
+        enable: true,
       })
     ],
     resolve: {
