@@ -7,14 +7,17 @@ import BaseLayout from './layouts/BaseLayout';
 const HomePage = lazy(() => import('./pages/dashboard/home'));
 const UserPage = lazy(() => import('./pages/system/user'));
 
-function RouteNode() {
+function RoutesNode() {
 	return (
 		<Routes>
-			<Route path='dashboard'>
-				<Route index path='home' element={<HomePage />} />
-			</Route>
-			<Route path='system'>
-				<Route index path='user' element={<UserPage />} />
+			<Route element={<BaseLayout />}>
+				<Route path='dashboard'>
+					<Route index path='home' element={<HomePage />} />
+				</Route>
+				<Route path='system'>
+					<Route index element={<UserPage />} />
+					<Route path='user' element={<UserPage />} />
+				</Route>
 			</Route>
 		</Routes>
 	);
@@ -22,11 +25,9 @@ function RouteNode() {
 
 function App() {
 	return (
-		<>
-			<Suspense>
-				<BaseLayout content={<RouteNode />}></BaseLayout>
-			</Suspense>
-		</>
+		<Suspense>
+			<RoutesNode />
+		</Suspense>
 	);
 }
 

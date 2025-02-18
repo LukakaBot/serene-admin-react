@@ -17,7 +17,11 @@ const BaseContent: FC<BaseContentProps> = (props) => {
 	const { content } = props;
 	const contentNode = content ? content : <div>我是内容</div>;
 
-	return <Content style={contentStyle}>{contentNode}</Content>;
+	return (
+		<Content style={contentStyle}>
+			{props.children ? props.children : contentNode}
+		</Content>
+	);
 };
 
 export default BaseContent;

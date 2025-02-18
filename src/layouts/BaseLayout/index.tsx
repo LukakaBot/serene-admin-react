@@ -5,6 +5,7 @@ import BaseHeader from '@/components/BaseHeader';
 import BaseSider from '@/components/BaseSider';
 import BaseContent from '@/components/BaseContent';
 import BaseFooter from '@/components/BaseFooter';
+import { Outlet } from 'react-router';
 
 const layoutStyle: CSSProperties = {
 	overflow: 'hidden',
@@ -20,7 +21,9 @@ const BaseLayout: FC<BaseLayoutProps> = (props) => {
 			<BaseSider />
 			<Layout>
 				<BaseHeader />
-				<BaseContent content={contentNode}></BaseContent>
+				<BaseContent content={contentNode}>
+					<Outlet />
+				</BaseContent>
 				<BaseFooter />
 			</Layout>
 		</Layout>
