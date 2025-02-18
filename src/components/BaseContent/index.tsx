@@ -14,14 +14,7 @@ const contentStyle: CSSProperties = {
 };
 
 const BaseContent: FC<BaseContentProps> = (props) => {
-	const { content } = props;
-	const contentNode = content ? content : <div>我是内容</div>;
-
-	return (
-		<Content style={contentStyle}>
-			{props.children ? props.children : contentNode}
-		</Content>
-	);
+	return <Content style={contentStyle}>{props.children}</Content>;
 };
 
 export default BaseContent;
