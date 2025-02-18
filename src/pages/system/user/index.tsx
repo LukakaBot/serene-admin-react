@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { ReactElement } from 'react';
 import { fetchUserTokenByAccount } from '@/api/system/user';
 
 async function getUserTokenByAccount() {
@@ -14,7 +14,7 @@ async function getUserTokenByAccount() {
 	}
 }
 
-const UserPage: FC = () => {
+function UserPage(): ReactElement {
 	useEffect(() => {
 		getUserTokenByAccount();
 	}, []);
@@ -24,6 +24,6 @@ const UserPage: FC = () => {
 			<h1>用户管理</h1>
 		</>
 	);
-};
+}
 
 export default UserPage;
