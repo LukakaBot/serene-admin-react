@@ -11,9 +11,8 @@ const interceptorManager = {
     console.log(config);
   },
   responded: {
-    onSuccess: <AG extends AlovaGenerics>(response: AG['Response']) => {
-      console.log(response);
-      const json: ResponseData = response.json();
+    onSuccess: async <AG extends AlovaGenerics>(response: AG['Response']) => {
+      const json: ResponseData = await response.json();
       return json.data;
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
