@@ -1,4 +1,5 @@
 import type { Method, AlovaGenerics } from "alova";
+import type { ResponseData } from '../types';
 
 // 请求拦截器
 export function requestInterceptor<AG extends AlovaGenerics>(config: Method<AG>) {
@@ -10,17 +11,16 @@ const interceptorManager = {
     console.log(config);
   },
   responded: {
-    onSuccess: <AG extends AlovaGenerics>(response: AG['Response'], method: Method<AG>) => {
+    onSuccess: <AG extends AlovaGenerics>(response: AG['Response']) => {
       console.log(response);
-      console.log(method);
+      const json: ResponseData = response.json();
+      return json.data;
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onError: <AG extends AlovaGenerics>(err: any, method: Method<AG>) => {
+    onError: (err: any) => {
       console.log(err);
-      console.log(method);
     },
-    onComplete: <AG extends AlovaGenerics>(method: Method<AG>) => {
-      console.log(method);
+    onComplete: () => {
     }
   }
 }
