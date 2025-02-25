@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { fetchUserTokenByAccount } from '@/api/system/user';
+import { fetchAccountUserToken } from '@/api/system/user';
 
 async function getUserTokenByAccount() {
 	try {
@@ -7,7 +7,7 @@ async function getUserTokenByAccount() {
 			username: 'admin',
 			password: '123456',
 		};
-		const res = await fetchUserTokenByAccount(params);
+		const res = await fetchAccountUserToken(params);
 		console.log(res);
 	} finally {
 		console.log('completed');
