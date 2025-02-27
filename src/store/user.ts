@@ -3,11 +3,16 @@ import { persist } from 'zustand/middleware';
 import type { AccountUserTokenParams, UserInfo } from "@/api/system/user/types";
 import { fetchAccountUserToken } from '@/api/system/user/index';
 
-interface UserStore {
+interface UserState {
   userInfo: UserInfo | null;
+}
+
+interface UserAction {
   getAccountUserToken: (params: AccountUserTokenParams) => Promise<void>;
   logout: () => void;
 }
+
+type UserStore = UserState & UserAction;
 
 const userStore = create<UserStore>()(persist(
   (set) => ({
