@@ -35,6 +35,7 @@
     "lint-staged": "^15.4.3",
     "mockjs": "^1.1.0",
     "prettier": "3.5.2",
+    "sort-package-json": "^2.15.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.22.0",
     "unplugin-auto-import": "^19.0.0",
