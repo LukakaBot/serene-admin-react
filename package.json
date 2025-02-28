@@ -1,13 +1,22 @@
 {
   "name": "serene-react-admin",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc -b && vite build",
+    "dev": "vite",
     "lint": "eslint .",
+    "prepare": "husky",
     "preview": "vite preview"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{md,html,css,json,yml}": "prettier --write",
+    "package.json": "pnpm sort-package-json"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.5",
