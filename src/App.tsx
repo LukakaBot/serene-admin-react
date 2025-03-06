@@ -1,19 +1,19 @@
 import { Suspense } from "react";
-import { useRoutes } from "react-router";
+// import { useRoutes } from 'react-router';
 import "./App.css";
-
 import { staticRoutes } from "./router";
+import AuthRoute from "@/components/AuthRoute";
 
-function RoutesNode() {
-  const routes = useRoutes(staticRoutes);
+// function RouteNode() {
+// 	const routes = useRoutes(staticRoutes);
 
-  return routes;
-}
+// 	return routes;
+// }
 
 function App() {
   return (
     <Suspense>
-      <RoutesNode />
+      <AuthRoute routes={staticRoutes} />
     </Suspense>
   );
 }
