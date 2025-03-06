@@ -1,16 +1,4 @@
-import type {
-  // RouteObject,
-  IndexRouteObject,
-  NonIndexRouteObject,
-} from "react-router";
-// import { lazyImportLayout, lazyImportRoute } from '@/utils/router';
-// import RouteGuard from '@/components/RouteGuard';
-
-// const LayoutPage = lazyImportLayout('/BaseLayout');
-// const LoginPage = lazyImportRoute('/login');
-// const HomePage = lazyImportRoute('/dashboard/home');
-// const UserPage = lazyImportRoute('/system/user');
-// const Exception404Page = lazyImportRoute('/exception/404');
+import type { IndexRouteObject, NonIndexRouteObject } from "react-router";
 
 export type BaseRouteObject = Omit<
   IndexRouteObject | NonIndexRouteObject,
@@ -40,53 +28,5 @@ const staticRoutes: BaseRouteObject[] = [
     children: [{ path: "user", type: "page", element: "/system/user" }],
   },
 ];
-
-// const staticRoutes: RouteObject[] = [
-// 	{
-// 		path: 'login',
-// 		element: <LoginPage />,
-// 	},
-// 	{
-// 		path: 'dashboard',
-// 		element: (
-// 			<RouteGuard>
-// 				<LayoutPage />
-// 			</RouteGuard>
-// 		),
-// 		children: [
-// 			{
-// 				path: 'home',
-// 				element: (
-// 					<RouteGuard>
-// 						<HomePage />
-// 					</RouteGuard>
-// 				),
-// 			},
-// 		],
-// 	},
-// 	{
-// 		path: 'system',
-// 		element: (
-
-// 			<RouteGuard>
-// 				<LayoutPage />
-// 			</RouteGuard>
-// 		),
-// 		children: [
-// 			{
-// 				path: 'user',
-// 				element: (
-// 					<RouteGuard>
-// 						<UserPage />
-// 					</RouteGuard>
-// 				),
-// 			},
-// 		],
-// 	},
-// 	{
-// 		path: '*',
-// 		element: <Exception404Page />,
-// 	},
-// ];
 
 export { staticRoutes };
