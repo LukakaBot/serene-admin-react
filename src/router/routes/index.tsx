@@ -1,31 +1,35 @@
-import type { IndexRouteObject, NonIndexRouteObject } from "react-router";
-
-export type BaseRouteObject = Omit<
-  IndexRouteObject | NonIndexRouteObject,
-  "element" | "children"
-> & {
-  element?: string;
-  type?: "page" | "layout";
-  children?: BaseRouteObject[];
-};
+import type { BaseRouteObject } from "@/router/interface";
 
 const staticRoutes: BaseRouteObject[] = [
   {
     path: "login",
     type: "page",
     element: "/login",
+    requiresAuth: false,
   },
   {
     path: "dashboard",
     type: "layout",
     element: "/BaseLayout",
-    children: [{ path: "home", type: "page", element: "/dashboard/home" }],
+    children: [
+      {
+        path: "home",
+        type: "page",
+        element: "/dashboard/home",
+      },
+    ],
   },
   {
     path: "system",
     type: "layout",
     element: "/BaseLayout",
-    children: [{ path: "user", type: "page", element: "/system/user" }],
+    children: [
+      {
+        path: "user",
+        type: "page",
+        element: "/system/user",
+      },
+    ],
   },
 ];
 

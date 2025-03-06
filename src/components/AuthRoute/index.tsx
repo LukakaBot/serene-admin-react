@@ -1,55 +1,59 @@
 import React from "react";
 import type { RouteObject } from "react-router";
 import { useRoutes } from "react-router";
-import type { BaseRouteObject } from "@/router/routes";
+import type { BaseRouteObject } from "@/router/interface";
 import { lazyImportLayout, lazyImportRoute } from "@/utils/router";
+import RouteGuard from "@/components/RouteGuard";
 
 interface AuthRouteProps {
   routes: BaseRouteObject[];
   children?: React.ReactNode;
 }
 
-function AuthRoute(props: AuthRouteProps) {
-  const { routes: _routes } = props;
+function transformRoute(route: BaseRouteObject): RouteObject {
+  const {
+    index,
+    element,
+    children,
+    type,
+    requiresAuth = true,
+    ...rest
+  } = route;
+  const isIndex = index ?? false;
 
-  function transformRoutes(routes: BaseRouteObject[]): RouteObject[] {
-    return routes.map(transformRoute);
-  }
+  const PageElement = element
+    ? type === "layout"
+      ? lazyImportLayout(element)
+      : lazyImportRoute(element)
+    : undefined;
 
-  function transformRoute(route: BaseRouteObject): RouteObject {
-    const isIndex = route?.index ?? false;
-    const { children, ...rest } = route;
+  const renderedElement = PageElement && <PageElement />;
+  const guardedElement =
+    renderedElement && requiresAuth ? (
+      <RouteGuard>{renderedElement}</RouteGuard>
+    ) : (
+      renderedElement
+    );
 
-    const PageElement = route?.element
-      ? route.type === "layout"
-        ? React.createElement(lazyImportLayout(route.element))
-        : React.createElement(lazyImportRoute(route.element))
-      : undefined;
-
-    if (route?.element && route.type === "layout") {
-      console.log(lazyImportLayout(route.element));
-    } else if (route?.element && route.type === "page") {
-      console.log(lazyImportRoute(route.element));
-    }
-
-    if (isIndex) {
-      return {
-        ...rest,
-        element: PageElement,
-        index: true,
-      };
-    }
-
+  if (isIndex) {
     return {
       ...rest,
-      index: false,
-      element: PageElement,
-      children: children ? transformRoutes(children) : undefined,
+      index: true,
+      element: guardedElement,
     };
   }
 
-  const routes = transformRoutes(_routes);
+  return {
+    ...rest,
+    index: false,
+    element: guardedElement,
+    children: children?.length ? children.map(transformRoute) : undefined,
+  };
+}
 
+function AuthRoute(props: AuthRouteProps) {
+  const { routes: _routes } = props;
+  const routes = useMemo(() => _routes.map(transformRoute), [_routes]);
   const Routes = useRoutes(routes);
 
   return Routes;
