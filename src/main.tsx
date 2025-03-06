@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { HashRouter } from "react-router";
 import "@ant-design/v5-patch-for-react-19";
+import { BrowserRouter } from "react-router";
 import "./index.css";
 import App from "./App.tsx";
 import { setupBucket } from "./plugins";
@@ -13,10 +13,10 @@ function setupApp() {
 
   root.render(
     <StrictMode>
-      <HashRouter>
+      <BrowserRouter>
         <App />
-      </HashRouter>
-    </StrictMode>
+      </BrowserRouter>
+    </StrictMode>,
   );
 }
 
