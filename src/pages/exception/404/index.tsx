@@ -11,7 +11,7 @@ function Exception404Page() {
     <Result
       status="404"
       title="404"
-      subTitle="页面不存在"
+      subTitle="你来到了没有知识的荒漠"
       extra={
         <Button type="primary" onClick={handleClick}>
           回到首页
