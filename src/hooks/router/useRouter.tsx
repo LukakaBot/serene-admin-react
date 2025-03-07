@@ -12,8 +12,9 @@ function useRouter() {
       forward: () => navigate(1),
       go: (delta: number) => navigate(delta),
       reload: () => window.location.reload(),
-      replace: (to: string) => navigate(to, { replace: true }),
-      push: (to: string) => navigate(to),
+      replace: (to: string) =>
+        navigate(to, { replace: true, state: { from: location } }),
+      push: (to: string) => navigate(to, { state: { from: location } }),
     }),
     [location, navigate],
   );

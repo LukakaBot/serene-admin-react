@@ -52,9 +52,9 @@ function transformRoute(route: BaseRouteObject): RouteObject {
 }
 
 function AuthRoute(props: AuthRouteProps) {
-  const { routes: _routes } = props;
-  const routes = useMemo(() => _routes.map(transformRoute), [_routes]);
-  const Routes = useRoutes(routes);
+  const { routes } = props;
+  const processRoutes = useMemo(() => routes.map(transformRoute), [routes]);
+  const Routes = useRoutes(processRoutes);
 
   return Routes;
 }

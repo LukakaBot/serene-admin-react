@@ -1,5 +1,5 @@
 import { Navigate } from "react-router";
-
+import { useRouter } from "@/hooks/index";
 interface RouteGuardProps {
   children: React.ReactNode;
 }
@@ -7,9 +7,14 @@ interface RouteGuardProps {
 function RouteGuard(props: RouteGuardProps) {
   const { children } = props;
   const token = window.$bucket?.get("token");
+  const { currentRoute } = useRouter();
 
-  if (!token) {
-    return <Navigate to="/login" replace />;
+  if (!token && currentRoute.pathname !== "/login") {
+    return <Navigate to="/login" state={{ from: currentRoute }} replace />;
+  }
+
+  if (token && currentRoute.pathname === "/login") {
+    return <Navigate to="/dashboard/home" replace />;
   }
 
   return <>{children}</>;

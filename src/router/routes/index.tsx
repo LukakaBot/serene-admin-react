@@ -5,7 +5,7 @@ const staticRoutes: BaseRouteObject[] = [
     path: "login",
     type: "page",
     element: "/login",
-    requiresAuth: false,
+    // requiresAuth: false,
   },
   {
     path: "dashboard",
