@@ -1,4 +1,4 @@
-import styles from "./SvgWave.module.css";
+import styles from "./index.module.css";
 
 function SvgWave() {
   return (
