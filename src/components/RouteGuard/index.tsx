@@ -4,8 +4,7 @@ interface RouteGuardProps {
   children: React.ReactNode;
 }
 
-function RouteGuard(props: RouteGuardProps) {
-  const { children } = props;
+function RouteGuard({ children }: RouteGuardProps) {
   const token = window.$bucket?.get("token");
   const { currentRoute } = useRouter();
 
