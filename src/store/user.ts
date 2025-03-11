@@ -1,10 +1,13 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import type { AccountUserTokenParams, UserInfo } from "@/api/system/user/types";
-import { fetchAccountUserToken } from '@/api/system/user/index';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import type {
+  AccountUserTokenParams,
+  AccountLoginResponse,
+} from "@/api/system/user/types";
+import { fetchAccountUserToken } from "@/api/system/user/index";
 
 interface UserState {
-  userInfo: UserInfo | null;
+  userInfo: AccountLoginResponse | null;
 }
 
 interface UserAction {
@@ -14,22 +17,24 @@ interface UserAction {
 
 type UserStore = UserState & UserAction;
 
-const userStore = create<UserStore>()(persist(
-  (set) => ({
-    userInfo: null,
-    getAccountUserToken: async (params: AccountUserTokenParams) => {
-      const userInfo = await fetchAccountUserToken(params);
-      window.$bucket?.set('token', userInfo.token);
-      set({ userInfo });
+const useUserStore = create<UserStore>()(
+  persist(
+    (set) => ({
+      userInfo: null,
+      getAccountUserToken: async (params: AccountUserTokenParams) => {
+        const userInfo = await fetchAccountUserToken(params);
+        window.$bucket?.set("token", userInfo.token);
+        set({ userInfo });
+      },
+      logout: () => {
+        window.$bucket?.remove("token");
+        set({ userInfo: null });
+      },
+    }),
+    {
+      name: "user-store",
     },
-    logout: () => {
-      window.$bucket?.remove('token');
-      set({ userInfo: null });
-    }
-  }),
-  {
-    name: 'user-store',
-  }
-));
+  ),
+);
 
-export default userStore;
+export default useUserStore;
