@@ -10,7 +10,7 @@ const rules: Record<keyof AccountUserTokenParams, FormRule[]> = {
   password: [{ required: true, message: "请输入密码" }],
 };
 
-const LoginBox: React.FC = () => {
+function LoginBox() {
   const [loading, setLoading] = useLoading();
   const { getAccountUserToken } = useUserStore();
   const router = useRouter();
@@ -53,6 +53,6 @@ const LoginBox: React.FC = () => {
       </Card>
     </div>
   );
-};
+}
 
 export default LoginBox;
