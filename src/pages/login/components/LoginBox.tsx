@@ -2,7 +2,7 @@ import type { FormRule } from "antd";
 import { Card, Form, Input, Button } from "antd";
 import type { AccountUserTokenParams } from "@/api/system/user/types";
 import useLoading from "@/hooks/loading/useLoading";
-import userStore from "@/store/user";
+import useUserStore from "@/store/user";
 import { useRouter } from "@/hooks/index";
 
 const rules: Record<keyof AccountUserTokenParams, FormRule[]> = {
@@ -12,7 +12,7 @@ const rules: Record<keyof AccountUserTokenParams, FormRule[]> = {
 
 const LoginBox: React.FC = () => {
   const [loading, setLoading] = useLoading();
-  const { getAccountUserToken } = userStore();
+  const { getAccountUserToken } = useUserStore();
   const router = useRouter();
 
   const [formData] = useState<AccountUserTokenParams>({
