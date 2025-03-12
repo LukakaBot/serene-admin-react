@@ -13,8 +13,10 @@ const defaultHeaderStyle: CSSProperties = {
 };
 
 function BaseHeader(props: BaseHeaderProps) {
-  const { headerStyle } = { ...defaultHeaderStyle, ...props };
-  return <Header style={headerStyle}>Header</Header>;
+  const { headerStyle } = props;
+  const mergedHeaderStyle = { ...defaultHeaderStyle, ...headerStyle };
+
+  return <Header style={mergedHeaderStyle}>Header</Header>;
 }
 
 export default BaseHeader;
