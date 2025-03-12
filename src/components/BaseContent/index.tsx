@@ -1,21 +1,22 @@
 import type { CSSProperties } from "react";
 import { Layout } from "antd";
-import type { BaseContentProps } from "./props";
+import type { BaseContentProps } from "./types";
 
 const { Content } = Layout;
 
-const contentStyle: CSSProperties = {
+const defaultContentStyle: CSSProperties = {
   display: "flex",
   flex: "1",
   flexDirection: "column",
   textAlign: "center",
   color: "#fff",
-  backgroundColor: "#0958d9",
 };
 
 function BaseContent(props: BaseContentProps) {
-  const { children } = props;
-  return <Content style={contentStyle}>{children}</Content>;
+  const { children, contentStyle } = props;
+  const mergedContentStyle = { ...defaultContentStyle, ...contentStyle };
+
+  return <Content style={mergedContentStyle}>{children}</Content>;
 }
 
 export default BaseContent;
