@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import tailwindcss from "@tailwindcss/vite";
+import UnoCSS from "unocss/vite";
 import AutoImport from "unplugin-auto-import/vite";
 import { vitePluginFakeServer } from "vite-plugin-fake-server";
 
@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       react(),
-      tailwindcss(),
+      UnoCSS(),
       AutoImport({
         imports: ["react", "react-router"],
         dts: "src/types/auto-import.d.ts",
