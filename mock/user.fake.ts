@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { defineFakeRoute } from "vite-plugin-fake-server/client";
-import { resultSuccess } from "./utils/request";
+import { resultSuccess, resultPageSuccess } from "./utils/request";
+import { doCustomTimes } from "./utils/tools";
 
 const menus = [
   {
@@ -24,6 +25,27 @@ const menus = [
     ],
   },
 ];
+
+function getUserPageList(pageSize: number) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const result: any[] = [];
+  doCustomTimes(pageSize, () => {
+    result.push({
+      id: faker.string.uuid(),
+      address: faker.location.city(),
+      age: faker.number.int({ min: 18, max: 60 }),
+      name: faker.person.fullName(),
+      avatar: faker.image.avatar(),
+      phone: faker.phone.number(),
+      roleName: faker.person.jobTitle(),
+      createTime: faker.date.recent(),
+      updateTime: faker.date.recent(),
+      no: faker.number.int({ min: 100000, max: 10000000 }),
+      status: faker.datatype.boolean(),
+    });
+  });
+  return result;
+}
 
 export default defineFakeRoute([
   {
@@ -52,6 +74,17 @@ export default defineFakeRoute([
         roles: ["admin"],
         menus,
       });
+    },
+  },
+  {
+    url: "/api/user/page",
+    method: "POST",
+    response: ({ query }) => {
+      const { page = 1, pageSize = 10 } = query;
+
+      const list = getUserPageList(50);
+
+      return resultPageSuccess(Number(page), Number(pageSize), list);
     },
   },
 ]);
