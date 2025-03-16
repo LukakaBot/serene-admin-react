@@ -4,6 +4,7 @@ import type { MenuList } from "@/types/route";
 
 interface RouteState {
   routes: MenuList;
+  setRoutes: (routes: MenuList) => void;
 }
 
 interface RouteAction {

@@ -1,17 +1,16 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type {
-  AccountUserTokenParams,
-  AccountLoginResponse,
-} from "@/api/system/user/types";
-import { fetchAccountUserToken } from "@/api/system/user/index";
+import type { AccountUserTokenParams, UserInfo } from "@/api/system/user/types";
+import { fetchAccountUserToken, fetchUserInfo } from "@/api/system/user/index";
+import useRouteStore from "./route";
 
 interface UserState {
-  userInfo: AccountLoginResponse | null;
+  userInfo: UserInfo | null;
 }
 
 interface UserAction {
   getAccountUserToken: (params: AccountUserTokenParams) => Promise<void>;
+  getUserInfo: () => Promise<void>;
   logout: () => void;
 }
 
@@ -22,13 +21,18 @@ const useUserStore = create<UserStore>()(
     (set) => ({
       userInfo: null,
       getAccountUserToken: async (params: AccountUserTokenParams) => {
-        const userInfo = await fetchAccountUserToken(params);
-        window.$bucket?.set("token", userInfo.token);
-        set({ userInfo });
+        const { token } = await fetchAccountUserToken(params);
+        window.$bucket?.set("token", token);
+      },
+      getUserInfo: async () => {
+        const userInfo = await fetchUserInfo();
+        set(() => ({ userInfo }));
+        const { setRoutes } = useRouteStore.getState();
+        setRoutes(userInfo.menus);
       },
       logout: () => {
         window.$bucket?.remove("token");
-        set({ userInfo: null });
+        set(() => ({ userInfo: null }));
       },
     }),
     {

@@ -21,6 +21,14 @@ function BaseSider(props: BaseSiderProps) {
     ...siderStyle,
   };
 
+  const menus = useMemo(() => {
+    return routes;
+  }, [routes]);
+
+  useEffect(() => {
+    console.log(menus);
+  }, [menus]);
+
   return (
     <Sider
       collapsible
@@ -29,7 +37,7 @@ function BaseSider(props: BaseSiderProps) {
       style={mergedSiderStyle}
     >
       <Menu
-        items={routes}
+        items={menus}
         theme="dark"
         defaultSelectedKeys={["1"]}
         mode="inline"

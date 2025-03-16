@@ -12,7 +12,7 @@ const rules: Record<keyof AccountUserTokenParams, FormRule[]> = {
 
 function LoginBox() {
   const [loading, setLoading] = useLoading();
-  const { getAccountUserToken } = useUserStore();
+  const { getAccountUserToken, getUserInfo } = useUserStore();
   const router = useRouter();
 
   const [formData] = useState<AccountUserTokenParams>({
@@ -24,6 +24,7 @@ function LoginBox() {
     try {
       setLoading(true);
       await getAccountUserToken(values);
+      await getUserInfo();
       router.replace("/dashboard/home");
     } finally {
       setLoading(false);
