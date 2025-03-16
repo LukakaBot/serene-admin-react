@@ -1,10 +1,10 @@
 import { Outlet } from "react-router";
 import { Layout } from "antd";
 import type { BaseLayoutProps } from "./props";
-import BaseHeader from "@/components/BaseHeader";
-import BaseSider from "@/components/BaseSider";
-import BaseContent from "@/components/BaseContent";
-import BaseFooter from "@/components/BaseFooter";
+import BaseHeader from "@/components/layout/BaseHeader";
+import BaseSider from "@/components/layout/BaseSider";
+import BaseContent from "@/components/layout/BaseContent";
+import BaseFooter from "@/components/layout/BaseFooter";
 
 const defaultLayoutStyle: React.CSSProperties = {
   overflow: "hidden",
