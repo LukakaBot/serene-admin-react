@@ -1,4 +1,4 @@
-import type { BaseRouteObject } from "@/router/interface";
+import type { BaseRouteObject } from "@/types/route";
 
 const staticRoutes: BaseRouteObject[] = [
   {

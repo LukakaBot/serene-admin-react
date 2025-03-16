@@ -1,6 +1,6 @@
 import type { RouteObject } from "react-router";
 import { useRoutes } from "react-router";
-import type { BaseRouteObject } from "@/router/interface";
+import type { BaseRouteObject } from "@/types/route";
 import { lazyImportLayout, lazyImportRoute } from "@/utils/router";
 import RouteGuard from "@/components/RouteGuard";
 
