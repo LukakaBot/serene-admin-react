@@ -13,7 +13,7 @@ function RouteGuard({ children }: RouteGuardProps) {
   }
 
   if (token && currentRoute.pathname === "/login") {
-    return <Navigate to="/dashboard/home" replace />;
+    return <Navigate to="/system/user" replace />;
   }
 
   return <>{children}</>;

@@ -25,7 +25,7 @@ function LoginBox() {
       setLoading(true);
       await getAccountUserToken(values);
       await getUserInfo();
-      router.replace("/dashboard/home");
+      router.replace("/system/user");
     } finally {
       setLoading(false);
     }
