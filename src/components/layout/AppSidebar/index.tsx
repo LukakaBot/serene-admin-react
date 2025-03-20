@@ -1,24 +1,24 @@
 import type { CSSProperties } from "react";
 import { Layout, Menu } from "antd";
-import type { BaseSiderProps } from "./types";
+import type { AppSidebarProps } from "./types";
 import useRouteStore from "@/store/route";
 
 const { Sider } = Layout;
 
-const defaultSiderStyle: CSSProperties = {
+const defaultSidebarStyle: CSSProperties = {
   textAlign: "center",
   lineHeight: "120px",
   color: "#fff",
 };
 
-function BaseSider(props: BaseSiderProps) {
-  const { siderStyle } = props;
+function AppSidebar(props: AppSidebarProps) {
+  const { sidebarStyle } = props;
   const [collapsed, setCollapsed] = useState(false);
   const { routes } = useRouteStore();
 
-  const mergedSiderStyle = {
-    ...defaultSiderStyle,
-    ...siderStyle,
+  const mergedSidebarStyle = {
+    ...defaultSidebarStyle,
+    ...sidebarStyle,
   };
 
   const menus = useMemo(() => {
@@ -34,16 +34,17 @@ function BaseSider(props: BaseSiderProps) {
       collapsible
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
-      style={mergedSiderStyle}
+      style={mergedSidebarStyle}
     >
+      <div className="m-4 h-8 rounded-md bg-[rgba(255,255,255,0.2)]" />
       <Menu
-        items={menus}
         theme="dark"
         defaultSelectedKeys={["1"]}
         mode="inline"
+        items={menus}
       />
     </Sider>
   );
 }
 
-export default BaseSider;
+export default AppSidebar;
