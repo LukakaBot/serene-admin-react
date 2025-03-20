@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 
-export interface BaseContentProps {
-  children?: React.ReactNode | null;
+export interface AppContentProps {
   contentStyle?: CSSProperties;
+  children?: React.ReactNode | null;
 }
