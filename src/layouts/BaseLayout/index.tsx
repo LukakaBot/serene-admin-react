@@ -1,35 +1,39 @@
 import { Outlet } from "react-router";
-import { Layout } from "antd";
-import type { BaseLayoutProps } from "./props";
-import BaseHeader from "@/components/layout/BaseHeader";
-import BaseSider from "@/components/layout/BaseSider";
-import BaseContent from "@/components/layout/BaseContent";
-import BaseFooter from "@/components/layout/BaseFooter";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import AppHeader from "@/components/layout/AppHeader";
+import AppSidebar from "@/components/layout/AppSidebar";
+import AppContent from "@/components/layout/AppContent";
+// import BaseFooter from '@/components/layout/BaseFooter';
 
-const defaultLayoutStyle: React.CSSProperties = {
-  overflow: "hidden",
-  width: "100%",
-};
+// const defaultLayoutStyle: React.CSSProperties = {
+// 	overflow: 'hidden',
+// 	width: '100%',
+// };
 
-function BaseLayout(props: BaseLayoutProps) {
-  const { layoutStyle } = props;
-
-  const mergedLayoutStyle = {
-    ...defaultLayoutStyle,
-    ...layoutStyle,
-  };
+function BaseLayout() {
+  // return (
+  // 	<Layout className='w-full h-full' style={mergedLayoutStyle}>
+  // 		<BaseSider />
+  // 		<Layout>
+  // 			<BaseHeader />
+  // 			<BaseContent>
+  // 				<Outlet />
+  // 			</BaseContent>
+  // 			<BaseFooter />
+  // 		</Layout>
+  // 	</Layout>
+  // );
 
   return (
-    <Layout className="w-full h-full" style={mergedLayoutStyle}>
-      <BaseSider />
-      <Layout>
-        <BaseHeader />
-        <BaseContent>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <AppHeader />
+        <AppContent>
           <Outlet />
-        </BaseContent>
-        <BaseFooter />
-      </Layout>
-    </Layout>
+        </AppContent>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
 
