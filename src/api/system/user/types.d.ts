@@ -24,6 +24,8 @@ export type UserInfo = {
   userName: string;
   /** 头像 */
   avatar: string;
+  /** 手机号码 */
+  phone: string;
   /** 角色 */
   roles: string[];
   /** 角色名 */
