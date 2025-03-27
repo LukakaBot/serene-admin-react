@@ -2,8 +2,12 @@ import type { Method, AlovaGenerics } from "alova";
 import type { ResponseData } from "../types";
 
 const interceptorManager = {
-  beforeRequest: <AG extends AlovaGenerics>(config: Method<AG>) => {
-    console.log(config);
+  beforeRequest: <AG extends AlovaGenerics>(method: Method<AG>) => {
+    const token = window.$bucket?.get("token");
+
+    if (token) {
+      method.config.headers.Authorization = `Bearer ${token}`;
+    }
   },
   responded: {
     onSuccess: async <AG extends AlovaGenerics>(response: AG["Response"]) => {
