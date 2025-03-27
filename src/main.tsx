@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router";
 import "./index.css";
 import App from "./App.tsx";
 import { setupBucket } from "./plugins";
-// import "virtual:uno.css";
 
 function setupApp() {
   const root = createRoot(document.getElementById("root")!);

@@ -4,7 +4,7 @@ interface ImportMetaEnv {
   /** 高德地图key */
   readonly VITE_APP_MAP_KEY: string;
   /** 存储类型 */
-  readonly VITE_APP_STORAGE_TYPE: 'localStorage' | 'sessionStorage';
+  readonly VITE_APP_STORAGE_TYPE: "localStorage" | "sessionStorage";
   /** 后端服务地址 */
   readonly VITE_SERVICE_URL: string;
   /** 后端服务端口 */
@@ -15,6 +15,8 @@ interface ImportMetaEnv {
   readonly VITE_SOCKET_URL: string;
   /** 公共基础路径 */
   readonly VITE_APP_PUBLIC_PATH: string;
+  /** 是否开启mock */
+  readonly VITE_APP_MOCK: "true" | "false";
 }
 
 interface ImportMeta {
