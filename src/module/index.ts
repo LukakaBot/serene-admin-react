@@ -15,7 +15,7 @@ const routerModules: ImportGlobPageModules = import.meta.glob(
 );
 
 const layoutModules: ImportGlobPageModules = import.meta.glob(
-  "/src/layouts/**/index.tsx",
+  "/src/layout/**/index.tsx",
   { eager: true },
 );
 
