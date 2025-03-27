@@ -1,16 +1,29 @@
 import { Outlet } from "react-router";
-import { Layout, Breadcrumb } from "antd";
+import { Layout, Breadcrumb, theme } from "antd";
 
 const { Content } = Layout;
 
 function AppContent() {
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+
   return (
-    <Content style={{ margin: "0 16px" }}>
-      <Breadcrumb style={{ margin: "16px 0" }}>
+    <Content className="flex flex-col mx-4">
+      <Breadcrumb className="!my-4">
         <Breadcrumb.Item>User</Breadcrumb.Item>
         <Breadcrumb.Item>Bill</Breadcrumb.Item>
       </Breadcrumb>
-      <Outlet />
+
+      <div
+        className="flex-1 p-6 box-border"
+        style={{
+          background: colorBgContainer,
+          borderRadius: borderRadiusLG,
+        }}
+      >
+        <Outlet />
+      </div>
     </Content>
   );
 }
