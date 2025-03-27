@@ -1,9 +1,18 @@
-import type { AppContentProps } from "./types";
+import { Outlet } from "react-router";
+import { Layout, Breadcrumb } from "antd";
 
-function AppContent(props: AppContentProps) {
-  const { children } = props;
+const { Content } = Layout;
 
-  return <main>{children}</main>;
+function AppContent() {
+  return (
+    <Content style={{ margin: "0 16px" }}>
+      <Breadcrumb style={{ margin: "16px 0" }}>
+        <Breadcrumb.Item>User</Breadcrumb.Item>
+        <Breadcrumb.Item>Bill</Breadcrumb.Item>
+      </Breadcrumb>
+      <Outlet />
+    </Content>
+  );
 }
 
 export default AppContent;
