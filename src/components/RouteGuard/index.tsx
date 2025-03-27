@@ -1,5 +1,5 @@
 import { Navigate } from "react-router";
-import { useRouter } from "@/hooks/index";
+import { useRouter } from "@/hook";
 interface RouteGuardProps {
   children: React.ReactNode;
 }

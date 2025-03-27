@@ -1,5 +1,5 @@
 import { Result, Button } from "antd";
-import { useRouter } from "@/hooks";
+import { useRouter } from "@/hook";
 
 function Exception404Page() {
   const router = useRouter();

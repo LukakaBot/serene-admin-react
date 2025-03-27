@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import type { UserPageListParams, UserPageItem } from "@/api/system/user/types";
 import { fetchUserPageList } from "@/api/system/user";
-import useLoading from "@/hooks/loading/useLoading";
+import { useLoading } from "@/hook";
 import { ColumnDef } from "@tanstack/react-table";
 import BaseDataTable from "@/components/BaseDataTable";
 

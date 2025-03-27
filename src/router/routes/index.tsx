@@ -10,7 +10,7 @@ const staticRoutes: BaseRouteObject[] = [
   {
     path: "dashboard",
     type: "layout",
-    element: "/BaseLayout",
+    element: "/AppLayout",
     children: [
       {
         path: "home",
@@ -22,7 +22,7 @@ const staticRoutes: BaseRouteObject[] = [
   {
     path: "system",
     type: "layout",
-    element: "/BaseLayout",
+    element: "/AppLayout",
     children: [
       {
         path: "user",
