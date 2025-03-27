@@ -1,10 +1,10 @@
-import styles from "./index.module.css";
+import "./index.css";
 
-function SvgWave() {
+function WaveSvg() {
   return (
-    <div className={styles.svg}>
+    <div className="svg">
       <svg
-        className={styles.waves}
+        className="waves"
         viewBox="0 24 150 28"
         preserveAspectRatio="none"
         shapeRendering="auto"
@@ -15,7 +15,7 @@ function SvgWave() {
             d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
           />
         </defs>
-        <g className={styles.parallax}>
+        <g className="parallax">
           <use
             xlinkHref="#gentle-wave"
             x="48"
@@ -65,4 +65,4 @@ function SvgWave() {
   );
 }
 
-export default SvgWave;
+export default WaveSvg;

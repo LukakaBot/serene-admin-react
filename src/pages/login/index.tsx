@@ -1,10 +1,10 @@
-// import SvgWave from './components/SvgWave';
+import WaveSvg from "./components/WaveSvg";
 import LoginBox from "./components/LoginBox";
 
 function LoginPage() {
   return (
     <div className="h-screen">
-      {/* <SvgWave /> */}
+      <WaveSvg />
       <LoginBox />
     </div>
   );

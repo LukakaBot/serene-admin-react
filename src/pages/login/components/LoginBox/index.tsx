@@ -1,9 +1,8 @@
 import type { FormRule } from "antd";
 import { Card, Form, Input, Button } from "antd";
 import type { AccountUserTokenParams } from "@/api/system/user/types";
-import useLoading from "@/hooks/loading/useLoading";
 import useUserStore from "@/store/user";
-import { useRouter } from "@/hooks/index";
+import { useRouter, useLoading } from "@/hook";
 
 const rules: Record<keyof AccountUserTokenParams, FormRule[]> = {
   username: [{ required: true, message: "请输入用户名" }],
