@@ -11,7 +11,7 @@ import type {
 export function fetchAccountUserToken(
   data: AccountUserTokenParams,
 ): Promise<AccountLoginResponse> {
-  return request.Post("/user/account/token", data);
+  return request.Post("/login/account/access-token", data);
 }
 
 /** 获取用户信息 */
