@@ -4,12 +4,28 @@ import { fetchUserPageList } from "@/api/system/user";
 import { useLoading } from "@/hook";
 import { ColumnDef } from "@tanstack/react-table";
 import BaseDataTable from "@/components/BaseDataTable";
+import type { AddEditModalRef } from "./components/AddEditModal/types";
+import AddEditModal from "./components/AddEditModal";
+import type { ButtonGroupItem } from "@/components/ButtonGroup/types";
+import ButtonGroup from "@/components/ButtonGroup";
+import { Flex } from "antd";
 
 function UserPage(): ReactElement {
   useEffect(() => {
     getTableData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const addEditModalRef = useRef<AddEditModalRef>(null);
+
+  const buttonGroupList: ButtonGroupItem[] = [
+    {
+      text: "添加",
+      type: "primary",
+      icon: "ep:plus",
+      onClick: addEditModalRef.current?.openModal,
+    },
+  ];
 
   const [loading, setLoading] = useLoading();
   const [searchParams, setSearchParams] = useState<UserPageListParams>({
@@ -55,9 +71,11 @@ function UserPage(): ReactElement {
   }
 
   return (
-    <div className="page-container">
+    <Flex className="page-container" vertical gap={10}>
+      <ButtonGroup list={buttonGroupList} />
       <BaseDataTable columns={columns} data={tableData} />
-    </div>
+      <AddEditModal ref={addEditModalRef} />
+    </Flex>
   );
 }
 
