@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react";
 import type { BaseIconProps } from "./types";
 
 const defaultProps: Omit<BaseIconProps, "name"> = {
-  color: "#000",
+  color: "currentColor",
   size: "16px",
 };
 
